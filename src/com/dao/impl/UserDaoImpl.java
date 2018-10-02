@@ -1,4 +1,5 @@
 package com.dao.impl;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -14,6 +15,7 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 	@Override
 	//添加单条的信息
 	public void add(User user) {
+		Date dt = new Date();
 		this.getHibernateTemplate().save(user);	
 	}
 	
