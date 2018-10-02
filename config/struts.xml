@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.action.extension" value="action"></constant>
+	<package name="default" extends="struts-default" namespace="/">
+		<action name="UserAction_*" class="userAction" method="{1}">
+		<result name="login" type="chain">ShowUser</result>
+		<result name="del" type="chain">ShowUser</result>
+		<result name="update.jsp" >update.jsp</result>
+		<result name="update" type="chain">ShowUser</result>
+		<result name="resgiter" type="redirectAction">ShowUser?pageIndex=1</result>
+		</action>
+		<action name="ShowUser" class="showUserAction" method="showAll">
+		<result name="showAll">homePage.jsp</result>
+		</action>
+		<action name="UploadAction_upload" class="com.struts.UploadAction" method="upload">
+		</action>
+		
+		<action name="download" class="com.struts.DownloadAction" method="download">
+			<result type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+	</package>
+	<package name="default1" extends="json-default" namespace="/">
+		<action name="AjaxAction_ajax" class="com.struts.AjaxAction" method="ajax">
+		<result name="suceess" type="json"></result>
+		</action>
+	</package>
+</struts>
